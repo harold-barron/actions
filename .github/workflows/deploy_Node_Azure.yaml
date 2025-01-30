@@ -2,13 +2,7 @@ name: Deploy
 
 on:
   workflow_call:
-    inputs:
-      app-name:
-        required: true
-        type: string
-      azure-credentials:
-        required: true
-        type: secret
+
 
 jobs:
   deploy:
@@ -22,10 +16,10 @@ jobs:
     - name: 'Login to Azure'
       uses: azure/login@v1
       with:
-        creds: ${{ inputs.azure-credentials }}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with:
-        app-name: ${{ inputs.app-name }}
+        app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
         package: .
