@@ -6,6 +6,10 @@ on:
       package-path:
         required: true
         type: string
+      hasWebConfig:
+        required: false
+        type: boolean
+        default: true
 
 jobs:
   build:
