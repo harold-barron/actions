@@ -26,7 +26,7 @@ jobs:
       run: npm run build
 
     - name: Conditionally copy web.config
-       if: env.hasWebConfig != 'false'
+      if: env.hasWebConfig != 'false'
       run: cp web.config dist/
 
     - name: Upload artifact for deployment job
