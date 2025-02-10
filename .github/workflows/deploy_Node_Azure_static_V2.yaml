@@ -18,12 +18,11 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: 'Get Azure Static Web Apps API Token'
-      - name: 'Get Azure Static Web Apps API Token'
-        id: get_token
-        run: |
-          token=$(az account get-access-token --query accessToken -o tsv)
-          echo "Azure Token: $token"
-          echo "token=$token" >> $GITHUB_ENV
+      id: get_token
+      run: |
+        token=$(az account get-access-token --query accessToken -o tsv)
+        echo "Azure Token: $token"
+        echo "token=$token" >> $GITHUB_ENV
 
 
     - name: 'Deploy to Azure Static WebApp'
