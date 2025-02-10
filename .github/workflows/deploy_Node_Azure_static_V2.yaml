@@ -20,12 +20,12 @@ jobs:
     - name: 'Get Azure Static Web Apps API Token'
       id: get_token
       run: |
-        echo "##[set-output name=token;]$(az account get-access-token --query accessToken -o tsv)"
+        echo "token=$(az account get-access-token --query accessToken -o tsv)" >> $GITHUB_ENV
 
     - name: 'Deploy to Azure Static WebApp'
       uses: Azure/static-web-apps-deploy@v1
       with:
-        azure_static_web_apps_api_token: ${{ steps.get_token.outputs.token }}
+        azure_static_web_apps_api_token: ${{ env.token }}
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         action: 'upload'
         app_location: '/'
